@@ -1,5 +1,9 @@
 # Angular 
 
+## Angular Workflow
+
+![Angular Workflow](./images/angular1.png)
+
 ## Create an Angular project 
 
 ```
@@ -29,3 +33,7 @@ ng generate component <COMPONENT_NAME>
 ```
 ng generate directive <DIRECTIVE_NAME>
 ```
+
+## Reference 
+
+[Original book source code](https://github.com/Apress/pro-angular-6) 
