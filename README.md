@@ -34,6 +34,27 @@ ng generate component <COMPONENT_NAME>
 ng generate directive <DIRECTIVE_NAME>
 ```
 
+## Generate a new Service 
+
+```
+ng generate service <SERVICE_NAME>
+```
+
+## JSON Server (DUMMY Http Server)
+
+1. Start the JSON server
+
+```
+npm run json
+```
+
+2. View the Database
+
+```
+http://localhost:3500/db
+```
+
+
 ## Reference 
 
 [Original book source code](https://github.com/Apress/pro-angular-6) 

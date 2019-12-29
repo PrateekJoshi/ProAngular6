@@ -5,6 +5,7 @@ import { Product } from './product.model';
     to compose asynchronous or callback-based code (refer : https://angular.io/guide/rx-library).
 */
 import { Observable, from } from 'rxjs';
+import { Order } from './order.model';
 
 /*
     @Injectable : This decorator specifies that this class object should be automatically injected to other module (
@@ -32,9 +33,15 @@ export class StaticDataSource {
         ];
 
         /*
-
+            Get list of products in store
         */
         getProducts() : Observable<Product[]> {
             return from([this.products]);
+        }
+
+        /* Save an order */
+        saveOrder(order: Order) : Observable<Order> {
+            console.log(JSON.stringify(order));
+            return from([order]);
         }
 }

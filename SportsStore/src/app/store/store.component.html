@@ -2,23 +2,73 @@
     <div class="row">
         <div class="col bg-dark text-white">
             <a class="navbar-brand">SPORTS STORE</a>
+            <!-- Cart Summary component start -->
+            <cart-summary></cart-summary>
+            <!-- Cart Summary component end -->
         </div>
     </div>
 
     <div class="row">
-        <div class="col-3 bg-info p-2 text-white">
-            {{categories.length}} Categories
+        <div class="col-3 p-2">
+            <!-- (click) : This is an event binder. When this button is clicked changeCategory() method of the Component 
+            is called.-->
+            <button class="btn btn-block btn-outline-primary" (click)="changeCategory()">
+                Home
+            </button>
+            <!-- The ngFor binding has been applied to the other button element, with an expression that will repeat
+            the element for each value in the array returned by the component’s categories property. The button has
+            a click event binding whose expression calls the changeCategory method to select the current category,
+
+            [class.active] : Class binding, Products are filtered when this is clicked changeCategory(cat).
+        -->
+            <button *ngFor="let cat of categories" class="btn btn-outline-primary btn-block"
+                [class.active]="cat == selectedcategory" (click)="changeCategory(cat)">
+                {{cat}}
+            </button>
         </div>
         <div class="col-9  p-2">
+            <!-- *ngFor : This is an example of a directive, which transforms the HTML element it is applied to. 
+            This specific directive is called ngFor, and it transforms the div element by duplicating it for each object
+            returned by the component’s products property. 
+            -->
             <div *ngFor="let product of products" class="card m-1 p-1 bg-light">
                 <h4>
+                    <!-- {{ }} : Data binding in Angular used to access fields & properties from Component class -->
                     {{product.name}}
-                    <span class="badge badge-pill badge-primary float-right" >
+                    <span class="badge badge-pill badge-primary float-right">
+                        <!-- | : Angular includes a feature called pipes, which are classes used to transform or prepare 
+                        a data value for its use in a data binding. There are several built-in pipes included with Angular,
+                         including the currency pipe, which formats number values as currencies (like below). 
+                        -->
                         {{ product.price | currency: "USD":"symbol":"2.2-2"}}
                     </span>
                 </h4>
-                <div class="card-text bg-white p-1">{{product.description}}</div>
+                <div class="card-text bg-white p-1">{{product.description}}
+                    <!-- Add to Cart button with event binding when button is clicked -->
+                    <button class="btn btn-success btn-sm float-right" (click)="addProductToCart(product)">
+                        Add To Cart
+                    </button>
+                </div>
+
             </div>
+
+            <!-- Pagination code start -->
+            <div class="form-inline float-left mr-1">
+                <select class="form-control" [value]="productsPerPage" (change)="changePageSize($event.target.value)">
+                    <option value="3"> 3 per Page</option>
+                    <option value="4"> 4 per Page</option>
+                    <option value="6"> 6 per Page</option>
+                    <option value="8"> 8 per Page</option>
+                </select>
+            </div>
+
+            <div class="btn-group float-right">
+                <button *counter="let page of pageCount" (click)="changePage(page)" class="btn btn-outline-primary"
+                    [class.active]="page == selectedPage">
+                    {{page}}
+                </button>
+            </div>
+            <!-- Pagination code ends -->
         </div>
     </div>
 </div>
